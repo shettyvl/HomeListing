@@ -29,18 +29,17 @@ namespace API.Controllers
             if (string.IsNullOrEmpty(suburb))
                 return BadRequest("No Suburb provided");
 
-            PagedResult<Listing> listings = _listManager.GetListings(suburb, categoryType, statusType, skip, take);
-
-            if (listings != null && listings.Results != null)
-            {
-                if (!listings.Results.Any())
-                {
-                    throw new Exception("No results");
-                }
-                else
+            try{
+                PagedResult<Listing> listings = _listManager.GetListings(suburb, categoryType, statusType, skip, take);
+                if (listings?.Results?.Any() == true)
                 {
                     return Ok(JsonConvert.SerializeObject(listings));
                 }
+            }catch(Exception e)
+            {
+                _logger.LogError(e.ToString());
+                // Can return custom error code server error
+                return StatusCode(500, "An error occurred on the server.");
             }
 
             return NotFound();

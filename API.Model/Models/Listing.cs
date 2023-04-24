@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Text;
-using API.Core.Custom;
 using Newtonsoft.Json;
-using static API.Core.Models.Enums;
+using API.Model;
+using static API.Model.Models.Enums;
 
-namespace API.Core.Models
+namespace API.Model.Models
 {
     public class Listing
     {

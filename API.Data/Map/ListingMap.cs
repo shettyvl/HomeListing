@@ -1,4 +1,4 @@
-using API.Core.Models;
+using API.Model.Models;
 using Dapper.FluentMap.Mapping;
 
 namespace API.Core.Maps

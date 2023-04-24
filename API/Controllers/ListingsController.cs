@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using API.Core;
-using API.Core.Models;
+using API.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using static API.Core.Models.Enums;
+using static API.Model.Models.Enums;
 
 namespace API.Controllers
 {

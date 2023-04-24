@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace API.Core.Custom
+namespace API.Data.Dapper
 {
     public interface IDbManager
     {

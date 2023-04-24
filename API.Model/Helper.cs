@@ -1,4 +1,4 @@
-namespace API.Core.Custom
+namespace API.Model
 {
     public class Helper
     {

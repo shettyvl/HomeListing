@@ -1,5 +1,5 @@
-using API.Core.Models;
-using static API.Core.Models.Enums;
+using API.Model.Models;
+using static API.Model.Models.Enums;
 
 namespace API.Core
 {

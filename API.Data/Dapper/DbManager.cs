@@ -1,10 +1,10 @@
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using static API.Core.Models.Enums;
+using static API.Model.Models.Enums;
 
-namespace API.Core.Custom
+namespace API.Data.Dapper
 {
     public class DbManager : IDbManager
     {

@@ -1,4 +1,4 @@
-namespace API.Core.Custom
+namespace API.Data.Dapper
 {
     public class ConnectionStrings
     {

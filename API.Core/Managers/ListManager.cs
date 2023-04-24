@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Core.Custom;
-using API.Core.Models;
+using API.Model.Models;
 using Dapper;
+using API.Data.Dapper;
 using Microsoft.Extensions.Configuration;
-using static API.Core.Models.Enums;
+using static API.Model.Models.Enums;
 
 namespace API.Core
 {

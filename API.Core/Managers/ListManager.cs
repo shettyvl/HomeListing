@@ -8,12 +8,10 @@ namespace API.Core.Managers
 {
     public class ListManager : IListManager
     {
-        private readonly IConfiguration _configuration;
         private readonly IListingRepository _listingRepository;
 
-        public ListManager(IListingRepository listingRepository, IConfiguration config)
+        public ListManager(IListingRepository listingRepository)
         { 
-            _configuration = config;
             _listingRepository = listingRepository;
         }
         public PagedResult<Listing> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)

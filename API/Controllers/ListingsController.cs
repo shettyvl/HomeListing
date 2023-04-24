@@ -15,12 +15,10 @@ namespace API.Controllers
     public class ListingsController : ControllerBase
     {
         private readonly ILogger<ListingsController> _logger;
-        private readonly IConfiguration _configuration;
         private IListManager _listManager;
-        public ListingsController(ILogger<ListingsController> logger, IConfiguration config, IListManager listManager)
+        public ListingsController(ILogger<ListingsController> logger, IListManager listManager)
         {
             _logger = logger;
-            _configuration = config;
             _listManager = listManager;
         }
 

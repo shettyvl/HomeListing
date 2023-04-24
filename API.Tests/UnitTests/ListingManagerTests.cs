@@ -13,12 +13,13 @@ namespace API.Tests.UnitTests
 	public class ListingManagerTests
 	{
 		private readonly Mock<IListingRepository> _mocklistRepo = new Mock<IListingRepository>();
+
 		private ListManager _listManager;
         private Mock<IConfiguration> _configuration  = new Mock<IConfiguration>();
 
         public ListingManagerTests()
 		{
-            _listManager = new ListManager(_mocklistRepo.Object, _configuration.Object);
+            _listManager = new ListManager(_mocklistRepo.Object);
 
         }
 

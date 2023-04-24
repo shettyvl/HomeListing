@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using API.Core;
+using API.Model.Utils;
 using API.Data.Repository;
 using API.Data.Interfaces;
 using API.Data.Dapper;
@@ -27,6 +28,7 @@ namespace API
             services.AddTransient<IListManager, ListManager>();
             services.AddTransient<IListingRepository, ListingRepository>();
             services.AddTransient<IDbManager, DbManager>();
+            services.Configure<AppConfig>(Configuration.GetSection("ConnectionStrings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

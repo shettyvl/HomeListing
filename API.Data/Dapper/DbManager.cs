@@ -4,33 +4,33 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using static API.Model.Models.Enums;
 using API.Data.Interfaces;
+using API.Model.Utils;
+using Microsoft.Extensions.Options;
 
 namespace API.Data.Dapper
 {
     public class DbManager : IDbManager
     {
-        private readonly IConfiguration _configuration;
+        private readonly IOptions<AppConfig> _configuration;
 
-        public DbManager(IConfiguration config)
+        public DbManager(IOptions<AppConfig> options)
         {
-            _configuration = config;
+            _configuration = options;
 
         }
 
         private string GetConnectionString(EnumDB Name, DbAccessLevel AccessLevel)
         {
-            var sb = new StringBuilder();
-            sb.Append(Name.ToString());
 
             if (AccessLevel == DbAccessLevel.WRITE)
             {
-                sb.Append("Write");
+                return _configuration.Value.TESTWrite;
             }
             else
             {
-                sb.Append("Read");
+                return _configuration.Value.TESTRead;
             }
-            return ConfigurationExtensions.GetConnectionString(_configuration, sb.ToString()).ToString();
+           
         }
 
         public IDbConnection GetConnection()

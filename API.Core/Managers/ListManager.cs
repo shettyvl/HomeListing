@@ -1,56 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using API.Model.Models;
-using Dapper;
-using API.Data.Dapper;
 using Microsoft.Extensions.Configuration;
 using static API.Model.Models.Enums;
+using API.Data.Interfaces;
 
-namespace API.Core
+namespace API.Core.Managers
 {
     public class ListManager : IListManager
     {
         private readonly IConfiguration _configuration;
+        private readonly IListingRepository _listingRepository;
 
-        public ListManager(IConfiguration config)
+        public ListManager(IListingRepository listingRepository, IConfiguration config)
         { 
             _configuration = config;
+            _listingRepository = listingRepository;
         }
         public PagedResult<Listing> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)
         {            
-            var listings = new List<Listing>();
-            var total = 0;
-
-            var filter = categoryType != CategoryType.None ? $" AND CategoryType = {(int)categoryType } " : string.Empty;
-            filter = statusType != StatusType.None ? filter + $" AND StatusType = {(int)statusType } " : string.Empty;
-
-            var sql = $@" SELECT count(ListingId) FROM [Backend-TakeHomeExercise].dbo.Listings WITH(NOLOCK)
-                                WHERE Suburb = @suburb { filter} ;
-
-                                SELECT ListingId, StreetNumber, Street, Suburb, State, Postcode, DisplayPrice, Title, CategoryType, StatusType
-                                FROM [Backend-TakeHomeExercise].dbo.Listings WITH(NOLOCK)
-                                WHERE Suburb = @suburb { filter} 
-                                ORDER BY ListingId
-                                OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY ;
-                            ";
-                            
-            var dbManager = new DbManager(EnumDB.TEST, DbAccessLevel.READ, _configuration);
-
-            using (var db = dbManager.GetOpenConnection())
-            {
-                var cmd = new CommandDefinition(sql, new { suburb, cattype = (int)categoryType, statusType = (int)statusType, skip, take });
-                var multi = db.QueryMultiple(cmd);
-
-                total = multi.Read<int>().FirstOrDefault();
-                listings = multi.Read<Listing>().ToList();
-            }
-
-            if (total == 0)
-                return null;
-
-            return new PagedResult<Listing>(skip, total, listings);            
+            var listings = _listingRepository.GetListings(suburb, categoryType, statusType, skip, take);
+            return new PagedResult<Listing>(skip, listings.Count, listings);      
         }
     }
 }

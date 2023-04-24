@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API.Core\API.Core.csproj" />
+    <ProjectReference Include="..\API.Model\API.Model.csproj" />
   </ItemGroup>
 
 </Project>

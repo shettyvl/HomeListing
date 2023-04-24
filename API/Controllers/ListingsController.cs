@@ -17,11 +17,11 @@ namespace API.Controllers
         private readonly ILogger<ListingsController> _logger;
         private readonly IConfiguration _configuration;
         private IListManager _listManager;
-
-        public ListingsController(ILogger<ListingsController> logger, IConfiguration config)
+        public ListingsController(ILogger<ListingsController> logger, IConfiguration config, IListManager listManager)
         {
             _logger = logger;
             _configuration = config;
+            _listManager = listManager;
         }
 
         [HttpGet("")]
@@ -30,8 +30,6 @@ namespace API.Controllers
         {
             if (string.IsNullOrEmpty(suburb))
                 return BadRequest("No Suburb provided");
-
-            _listManager = new ListManager(_configuration);
 
             PagedResult<Listing> listings = _listManager.GetListings(suburb, categoryType, statusType, skip, take);
 

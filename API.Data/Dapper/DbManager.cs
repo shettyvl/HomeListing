@@ -3,17 +3,22 @@ using Microsoft.Data.SqlClient;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using static API.Model.Models.Enums;
+using API.Data.Interfaces;
 
 namespace API.Data.Dapper
 {
     public class DbManager : IDbManager
     {
-        private readonly string _connectionString;
         private readonly IConfiguration _configuration;
 
-        public DbManager(EnumDB Name, DbAccessLevel AccessLevel, IConfiguration config)
+        public DbManager(IConfiguration config)
         {
             _configuration = config;
+
+        }
+
+        private string GetConnectionString(EnumDB Name, DbAccessLevel AccessLevel)
+        {
             var sb = new StringBuilder();
             sb.Append(Name.ToString());
 
@@ -25,12 +30,12 @@ namespace API.Data.Dapper
             {
                 sb.Append("Read");
             }
-            _connectionString = ConfigurationExtensions.GetConnectionString(config, sb.ToString()).ToString();
+            return ConfigurationExtensions.GetConnectionString(_configuration, sb.ToString()).ToString();
         }
 
         public IDbConnection GetConnection()
         {
-            var conn = new SqlConnection(_connectionString);
+            var conn = new SqlConnection(GetConnectionString(EnumDB.TEST, DbAccessLevel.READ));
             return conn;
         }
 

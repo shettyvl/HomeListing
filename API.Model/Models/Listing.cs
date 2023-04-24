@@ -49,7 +49,7 @@ namespace API.Model.Models
         {
             get
             {
-                var res = string.IsNullOrEmpty(DisplayPrice) ? null : Helper.FormatNumber(string.Concat(DisplayPrice.Trim().Where(x => char.IsDigit(x) || char.IsWhiteSpace(x))));
+                var res = string.IsNullOrEmpty(DisplayPrice) ? null : string.Concat(DisplayPrice.Trim().Where(x => char.IsDigit(x) || char.IsWhiteSpace(x))).FormatNumber();
                 return string.IsNullOrEmpty(res) ? string.Empty : "$" + res;
             } 
         }

@@ -9,6 +9,7 @@ using API.Data.Repository;
 using API.Data.Interfaces;
 using API.Data.Dapper;
 using API.Core.Managers;
+using Microsoft.OpenApi;
 
 namespace API
 {
@@ -25,18 +26,23 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IListManager, ListManager>();
+            services.AddTransient<IListingsManager, ListingsManager>();
             services.AddTransient<IListingRepository, ListingRepository>();
             services.AddTransient<IDbManager, DbManager>();
             services.Configure<AppConfig>(Configuration.GetSection("ConnectionStrings"));
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+         
             }
 
             app.UseRouting();
@@ -49,7 +55,7 @@ namespace API
             });
 
             // initialise Dapper Fluent mappings
-            API.Core.Startup.Register();
+            API.Core.Registrations.Register();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace API.Model.Models
             Land,
             Rural
         }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusType
         {
@@ -37,10 +38,12 @@ namespace API.Model.Models
             /// Read-only access
             /// </summary>
             READ,
+
             /// <summary>
             /// Read-write access
             /// </summary>
             WRITE
         }
+
     }
 }

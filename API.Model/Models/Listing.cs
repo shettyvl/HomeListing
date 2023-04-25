@@ -9,16 +9,22 @@ namespace API.Model.Models
     public class Listing
     {
         public int ListingId { get; set; }
+
         [JsonIgnore]
-        public string StreetNumber { get; set; }
+        public string? StreetNumber { get; set; }
+
         [JsonIgnore]
-        public string Street { get; set; }
+        public string? Street { get; set; }
+
         [JsonIgnore]
-        public string Suburb { get; set; }
+        public string? Suburb { get; set; }
+
         [JsonIgnore]
-        public string State { get; set; }
+        public string? State { get; set; }
+
         [JsonIgnore]
         public int Postcode { get; set; }
+
         public string Address 
         {
             get 
@@ -42,9 +48,13 @@ namespace API.Model.Models
                 return addr.ToString(); 
             }
          }
+
         public CategoryType CategoryType { get; set; }
+
         public StatusType StatusType { get; set; }
-        public string DisplayPrice { get; set; }
+
+        public string? DisplayPrice { get; set; }
+
         public string ShortPrice 
         {
             get
@@ -53,6 +63,7 @@ namespace API.Model.Models
                 return string.IsNullOrEmpty(res) ? string.Empty : "$" + res;
             } 
         }
-        public string Title { get; set; }
+
+        public string? Title { get; set; }
     }
 }

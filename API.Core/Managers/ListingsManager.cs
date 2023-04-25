@@ -6,14 +6,16 @@ using API.Data.Interfaces;
 
 namespace API.Core.Managers
 {
-    public class ListManager : IListManager
+    public class ListingsManager : IListingsManager
     {
         private readonly IListingRepository _listingRepository;
 
-        public ListManager(IListingRepository listingRepository)
+        public ListingsManager(IListingRepository listingRepository)
         { 
             _listingRepository = listingRepository;
         }
+
+
         public PagedResult<Listing> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)
         {            
             var listings = _listingRepository.GetListings(suburb, categoryType, statusType, skip, take);

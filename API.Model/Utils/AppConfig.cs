@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace API.Model.Utils
 {
 	public class AppConfig
@@ -6,8 +7,9 @@ namespace API.Model.Utils
 		public AppConfig()
 		{
 		}
-        public string TESTRead { get; set; }
-        public string TESTWrite { get; set; }
+
+        public string TESTRead { get; set; } = string.Empty;
+        public string TESTWrite { get; set; } = string.Empty;
     }
 }
 

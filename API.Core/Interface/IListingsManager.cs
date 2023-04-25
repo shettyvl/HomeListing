@@ -3,7 +3,7 @@ using static API.Model.Models.Enums;
 
 namespace API.Core
 {
-    public interface IListManager
+    public interface IListingsManager
     {
         PagedResult<Listing> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take);
     }

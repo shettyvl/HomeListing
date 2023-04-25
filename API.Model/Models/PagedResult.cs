@@ -11,7 +11,7 @@ namespace API.Model.Models
 
         public int Count => Results.Count();
 
-        public IEnumerable<T> Results { get; set; }
+        public IEnumerable<T> Results { get; set; } = new List<T>();
 
         public PagedResult() { }
 

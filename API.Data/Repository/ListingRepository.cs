@@ -4,16 +4,18 @@ using API.Data.Interfaces;
 using Dapper;
 using static API.Model.Models.Enums;
 using API.Data.Dapper;
-using API.Data.Interfaces;
+
 namespace API.Data.Repository
 {
 	public class ListingRepository : IListingRepository
 	{
         private readonly IDbManager _dbManager;
+
         public ListingRepository(IDbManager dbManager)
 		{
             _dbManager = dbManager;
         }
+
 
         public List<Listing> GetListings(string suburb, CategoryType categoryType, StatusType statusType, int skip, int take)
         {
@@ -41,8 +43,10 @@ namespace API.Data.Repository
                 total = multi.Read<int>().FirstOrDefault();
                 listings = multi.Read<Listing>().ToList();
             }
+
             return listings;
         }
+
     }
 }
 

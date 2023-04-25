@@ -1,24 +1,30 @@
 using System.Linq;
 using System.Text;
-using API.Core.Custom;
 using Newtonsoft.Json;
-using static API.Core.Models.Enums;
+using API.Model;
+using static API.Model.Models.Enums;
 
-namespace API.Core.Models
+namespace API.Model.Models
 {
     public class Listing
     {
         public int ListingId { get; set; }
+
         [JsonIgnore]
-        public string StreetNumber { get; set; }
+        public string? StreetNumber { get; set; }
+
         [JsonIgnore]
-        public string Street { get; set; }
+        public string? Street { get; set; }
+
         [JsonIgnore]
-        public string Suburb { get; set; }
+        public string? Suburb { get; set; }
+
         [JsonIgnore]
-        public string State { get; set; }
+        public string? State { get; set; }
+
         [JsonIgnore]
         public int Postcode { get; set; }
+
         public string Address 
         {
             get 
@@ -42,17 +48,22 @@ namespace API.Core.Models
                 return addr.ToString(); 
             }
          }
+
         public CategoryType CategoryType { get; set; }
+
         public StatusType StatusType { get; set; }
-        public string DisplayPrice { get; set; }
+
+        public string? DisplayPrice { get; set; }
+
         public string ShortPrice 
         {
             get
             {
-                var res = string.IsNullOrEmpty(DisplayPrice) ? null : Helper.FormatNumber(string.Concat(DisplayPrice.Trim().Where(x => char.IsDigit(x) || char.IsWhiteSpace(x))));
+                var res = string.IsNullOrEmpty(DisplayPrice) ? null : string.Concat(DisplayPrice.Trim().Where(x => char.IsDigit(x) || char.IsWhiteSpace(x))).FormatNumber();
                 return string.IsNullOrEmpty(res) ? string.Empty : "$" + res;
             } 
         }
-        public string Title { get; set; }
+
+        public string? Title { get; set; }
     }
 }

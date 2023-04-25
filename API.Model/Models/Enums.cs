@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace API.Core.Models
+namespace API.Model.Models
 {
     public class Enums
     {
@@ -14,6 +14,7 @@ namespace API.Core.Models
             Land,
             Rural
         }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusType
         {
@@ -37,10 +38,12 @@ namespace API.Core.Models
             /// Read-only access
             /// </summary>
             READ,
+
             /// <summary>
             /// Read-write access
             /// </summary>
             WRITE
         }
+
     }
 }

@@ -1,8 +1,8 @@
-namespace API.Core.Custom
+namespace API.Model
 {
-    public class Helper
+    public static class StringExtensions
     {
-        public static string FormatNumber(string input)
+        public static string FormatNumber(this string input)
         {
             long num;
             if (!long.TryParse(input.Trim(), out num))

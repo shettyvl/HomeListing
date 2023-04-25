@@ -3,7 +3,7 @@ using Dapper.FluentMap;
 
 namespace API.Core
 {
-    public class Startup
+    public class Registrations
     {
         public static void Register()
         {

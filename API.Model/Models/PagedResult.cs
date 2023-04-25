@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace API.Core.Models
+namespace API.Model.Models
 {
     public class PagedResult<T>
     {
@@ -11,7 +11,7 @@ namespace API.Core.Models
 
         public int Count => Results.Count();
 
-        public IEnumerable<T> Results { get; set; }
+        public IEnumerable<T> Results { get; set; } = new List<T>();
 
         public PagedResult() { }
 
